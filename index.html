@@ -25,7 +25,7 @@
 
 
   <title>Beyond Scanpaths</title>
-  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.png">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
   rel="stylesheet">
 
@@ -97,16 +97,14 @@
                     </a>
                   </span> -->
 
-                  <!-- Github link -->
-                  <span class="link-block">
-                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
-                    <span>Dataset</span>
+
+                <span class="link-block">
+                  <a href="" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon" style="vertical-align: middle; font-size: 20px;">&#129303;</span>
+                      <span style="vertical-align: middle;">Dataset</span>
                   </a>
-                </span>
+              </span>
 
                 <!-- Github link -->
                 <span class="link-block">
@@ -115,7 +113,7 @@
                   <span class="icon">
                     <i class="fab fa-github"></i>
                   </span>
-                  <span>Code (coming soon)</span>
+                  <span>Code</span>
                 </a>
               </span>
 
@@ -146,11 +144,12 @@
     <div class="hero-body">
       <video poster="" id="tree" autoplay controls muted loop height="100%">
         <!-- Your video here -->
-        <source src="static/videos/banner_video.mp4"
+        <source src="static/videos/clipped_h264.mp4"
         type="video/mp4">
       </video>
       <h2 class="subtitle has-text-centered">
-        Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus. 
+        On the left is ground-truth gaze data from six people, on the right are six simulations from our method. 
+        We collected and make available a high quality multi-subject gaze dataset, the Focus100, and developed a spatio-temporal graph transformer approach to simulate continuous human-like gaze sequences.
       </h2>
     </div>
   </div>
@@ -165,135 +164,196 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            We propose a new approach to modelling gaze in complex environments, being the first to apply graph-based simulation (GBS) to human attention modelling. Unlike traditional methods that reduce attention to simplified representations like saliency maps or scanpaths, our model unifies attention modelling by generating the underlying raw gaze signal - producing realistic, continuous gaze sequences that capture the complexity of natural visual behaviour. Our approach treats gaze as an active element within the environment, allowing us to simulate natural gaze sequences in real-world driving scenes. To achieve this, we propose a gaze-centric spatiotemporal graph representation of driving environments and develop a heterogeneous graph transformer module to predict gaze behaviour in relation to surrounding traffic objects and structures. Additionally, our Object-based Mixture Density Network (ODN) generates object-oriented gaze distributions, aligning predictions with the way people prioritise objects in complex scenes. Finally, to support and validate our approach, we introduce Focus100, a dataset of high-resolution gaze data from 30 subjects viewing diverse ego-centric driving footage.
-        </div>
+            Accurately modelling human attention is essential for numerous computer vision applications, particularly in the domain of automotive safety. Traditional methods simplify or aggregate gaze data into scanpath or saliency map representations, neglecting several aspects of natural gaze dynamics and potentially introducing artefacts into training data. Addressing these shortcomings, we introduce a dynamical systems approach that conceptualises human gaze as an active agent within the environment, allowing the modelling and generation of raw, continuous gaze data. We propose a gaze-centric spatiotemporal graph representation of driving scenes, processed by a novel heterogeneous graph transformer module (the Affinity Relation Transformer; ART), enabling dynamic modelling of interactions between driver gaze and surrounding traffic objects. Additionally, we introduce an Object-based mixture Density Network (ODN) for predicting next-step gaze distributions, accounting for the stochastic and object-centric nature of attentional shifts in complex environments. To support our approach, we also collected and make available the Focus100 dataset, featuring gaze from 30 engaged subjects viewing ego-centric driving footage. Our unified simulation-based approach demonstrates significant improvements in producing raw gaze sequences, spatial attention heatmaps, and naturalistic scanpath dynamics compared to state-of-the-art ego-centric gaze estimation approaches; offering valuable insights for the temporal modelling of attention and automotive safety.        </div>
     </div>
   </div>
 </section>
 <!-- End paper abstract -->
 
-
-<!-- Image carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel1.jpg" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-          First image description.
-        </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel2.jpg" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-          Second image description.
-        </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel3.jpg" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-         Third image description.
-       </h2>
-     </div>
-     <div class="item">
-      <!-- Your image here -->
-      <img src="static/images/carousel4.jpg" alt="MY ALT TEXT"/>
-      <h2 class="subtitle has-text-centered">
-        Fourth image description.
-      </h2>
-    </div>
-  </div>
-</div>
-</div>
-</section>
-<!-- End image carousel -->
-
-
-
-
-<!-- Youtube video -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <!-- Paper video. -->
-      <h2 class="title is-3">Video Presentation</h2>
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
+<!-- Method -->
+<section class="section hero is-small">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <div class="content">
           
-          <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          <h2 class="title is-3 has-text-centered">
+            Affinity Relation Transformer + Object Density Network
+          </h2>
+
+          <img src="static/images/pipeline.png" 
+          alt="Weight distance correlation" 
+          class="blend-img-background center-image" 
+          style="display: block; margin: 0 auto; max-width: 100%; height: auto;
+                margin-bottom: 2rem;
+                margin-top: 2rem;" />
+
+          <div class="columns">
+            <div class="column is-two-thirds">
+
+              <p>We propose a novel framework for gaze prediction by modeling its spatiotemporal evolution as an active participant in the environment. Our approach leverages 
+                graph-based simulation (GBS) to capture complex relationships by representing systems as graphs of objects/agents and their interactions, marking a first for 
+                GBS in attention modeling. 
+              </p>
+              <p>
+                A gaze-centric traffic graph (right), processed by our Affinity Relation graph Transformer (ART), captures dynamic interactions between 
+                driver gaze and traffic objects, injecting relationship information into message passing. An Object-based Density Network (ODN) then predicts next-step 
+                gaze distributions, accounting for the object-centric nature of attention shifts.
+              </p>
+            </div>
+            <div class="column is-one-third">
+              <img src="static/images/art_graph.png" alt="Weight distance correlation" class="blend-img-background center-image" style="max-width: 85%; height: auto;" />
+              <em> Traffic scenes as heterogeneous graphs with nodes representing road structure, driving-relevant objects, and <strong>gaze</strong>. </em>
+            </div>
           </div>
+
         </div>
       </div>
     </div>
   </div>
 </section>
-<!-- End youtube video -->
 
+<!-- Dataset -->
+<section class="section hero is-small is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <div class="content">
 
-<!-- Video carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3">Another Carousel</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video1">
-          <video poster="" id="video1" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel1.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video2">
-          <video poster="" id="video2" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel2.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video3">
-          <video poster="" id="video3" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
-            <source src="static/videos/carousel3.mp4"
-            type="video/mp4">
-          </video>
+          <h2 class="title is-3 has-text-centered">
+            Focus100 Dataset
+          </h2>
+
+          <figure>
+            <img src="static/images/focus100.png" 
+                 alt="Weight distance correlation" 
+                 class="blend-img-background center-image" 
+                 style="display: block; margin: 0 auto; max-width: 100%; height: auto;
+                        margin-bottom: 1rem;
+                        margin-top: 2rem;" />
+            <figcaption class="has-text-centered">
+              <em>The Focus100 dataset contains eye-tracking data from 30 subjects viewing 100 driving videos. The top row shows diversity in pedestrian traffic,
+                 hazardousness, and road type. 
+                 The bottom row shows the same video frame overlaid with the gaze samples of three separate subjects over the previous 2s; demonstrating 
+                 the diversity of temporal gaze patterns for the same stimulus. </em>
+            </figcaption>
+          </figure>
+
+              <p>
+                Focus100 is a new dataset designed to facilitate research on dynamic human attention in 
+                driving scenarios, particularly for the development and evaluation of gaze estimation models. 
+                This dataset addresses critical limitations in existing driving gaze datasets, which often 
+                lack raw temporal gaze data or sufficient scenario diversity.
+              </p>
+              <p>
+                Focus100 features high-quality, multi-subject gaze data collected from 30 
+                engaged subjects viewing 100 1-minute videos of ego-centric driving footage. 
+                The dataset includes 15 hours of raw gaze sequences from at least 7 subjects per video, 
+                providing valuable insights for temporal attention modeling and automotive safety.
+              </p>
+
         </div>
       </div>
     </div>
   </div>
 </section>
-<!-- End video carousel -->
+
+<!-- Results -->
+<section class="section hero is-small">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <div class="content">
+
+          <h2 class="title is-3 has-text-centered">
+            Temporal Dynamics
+          </h2>
+          
+
+            <img src="static/images/dynamics_example.png" 
+                  alt="Weight distance correlation" 
+                  class="blend-img-background center-image" 
+                  style="display: block; margin: 0 auto; max-width: 100%; height: auto;
+                        margin-bottom: 2rem;
+                        margin-top: 2rem;" />
+
+            <p>
+                We compared our simulations to ground truth (human) and state-of-the-art ego-centric gaze estimation methods on the Focus100 dataset. 
+                Above we see example gaze plots for each image dimension across a Focus100 video - each faint line is a subject/simulation and the fuller line is
+                the mean sequence (AtTrans is deterministic and therefore only has one).
+                Our method produces more human-like temporal gaze sequences than existing approaches; a result borne out across a range of 
+                sequence and gaze similarity metrics (below).
+            </p>
 
 
+          <img src="static/images/dynamics_results.png" 
+          alt="Weight distance correlation" 
+          class="blend-img-background center-image" 
+          style="display: block; margin: 0 auto; max-width: 100%; height: auto;
+                margin-bottom: 2rem;
+                margin-top: 2rem;" />
+              
+              
+          </div>
 
-
-
-
-<!-- Paper poster -->
-<!-- <section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title">Poster</h2>
-
-      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
-          </iframe>
-        
+        </div>
       </div>
     </div>
-  </section> -->
-<!--End paper poster -->
+  </div>
+</section>
+
+<!-- Heatmap Results -->
+<section class="section hero is-small is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <div class="content">
+
+          <h2 class="title is-3 has-text-centered">
+            Heatmaps
+          </h2>
+
+          <video poster="" id="tree" autoplay controls muted loop height="100%"
+                 style="display: block; margin: 0 auto; 
+                        max-width: 100%; height: auto; 
+                        margin-bottom: 2rem; margin-top: 2rem;">
+            <!-- <source src="static/videos/1518011881342076_h264.mp4" -->
+            <source src="static/videos/1518702770972457_h264.mp4"
+            type="video/mp4">
+          </video>
+
+          <div class="columns">
+            <div class="column is-two-thirds">
+              <p>
+                Using our generated simulation we are able to create other gaze representations, such as scanpaths and heatmaps.
+                Above you can see heatmaps produced by ART simulations over a Focus100 test-set sequence (unseen during model training).
+                Overlaid are ground truth (human) gaze data.
+
+                The results table on the right shows our method surpassing SOA appraoches - designed specifically for heatmap generation - on our dataset.
+              </p>
+            </div>
+            <div class="column is-one-third">
+              <img src="static/images/heatmap_results.png" alt="Weight distance correlation" class="blend-img-background center-image" style="max-width: 92%; height: auto;" />            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 <!--BibTex citation -->
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
-      <pre><code>BibTex Code Here</code></pre>
+      <pre><code>
+        @misc{beyond-scanpaths,
+          title={Beyond Scanpaths: Simulating Gaze with the Affinity Relation Transformer},
+          author={Luke Palmer, Petar Palasek, Hazem Abdelkawy},
+          year={2025}
+        }
+      </code></pre>
     </div>
 </section>
 <!--End BibTex citation -->
