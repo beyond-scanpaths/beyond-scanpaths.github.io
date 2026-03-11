@@ -52,7 +52,7 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">Beyond Scanpaths: Simulating Gaze with the Affinity Relation Transformer</h1>
+            <h1 class="title is-1 publication-title">Beyond Scanpaths: Graph-Based Gaze Simulation in Dynamic Scenes</h1>
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
               <span class="author-block">
@@ -62,6 +62,15 @@
                   <span class="author-block">
                     Hazem Abdelkawy<sup>2</sup>
                   </span>
+                  </div>
+
+                  <div class="partner-logos">
+                    <a href="https://glimpse.ml" target="_blank" rel="noopener noreferrer" aria-label="GlimpseML">
+                      <img src="static/images/Glimpse-Logo-RGB_ML-Blue.png" alt="GlimpseML logo" class="partner-logo">
+                    </a>
+                    <a href="https://www.toyota-europe.com/" target="_blank" rel="noopener noreferrer" aria-label="Toyota Motor Europe">
+                      <img src="static/images/Toyota-header-logo.png" alt="Toyota logo" class="partner-logo">
+                    </a>
                   </div>
 
                   <div class="is-size-5 publication-authors">
@@ -81,13 +90,13 @@
                         <span class="icon">
                           <i class="fas fa-file-pdf"></i>
                         </span>
-                        <span>Paper (under review)</span>
+                        <span>CVPR Paper</span>
                       </a>
                     </span>
 
                     <!-- Supplementary PDF link -->
 
-                    <!-- <span class="link-block">
+                    <span class="link-block">
                       <a href="static/pdfs/supplementary_material.pdf" target="_blank"
                       class="external-link button is-normal is-rounded is-dark">
                       <span class="icon">
@@ -95,7 +104,7 @@
                       </span>
                       <span>Supplementary</span>
                     </a>
-                  </span> -->
+                  </span>
 
 
                 <span class="link-block">
@@ -107,7 +116,7 @@
               </span>
 
                 <!-- Github link -->
-                <span class="link-block">
+                <!-- <span class="link-block">
                   <a href="https://github.com" target="_blank"
                   class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -115,19 +124,8 @@
                   </span>
                   <span>Code</span>
                 </a>
-              </span>
+              </span>-->
 
-                <!-- ArXiv abstract Link -->
-
-                <!-- <span class="link-block">
-                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
-                  class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span> -->
 
             </div>
           </div>
@@ -147,10 +145,20 @@
         <source src="static/videos/clipped_h264.mp4"
         type="video/mp4">
       </video>
+      <!---
       <h2 class="subtitle has-text-centered">
         On the left is ground-truth gaze data from six people, on the right are six simulations from our method. 
-        We collected a high quality multi-subject gaze dataset, the Focus100, and developed a spatio-temporal graph transformer approach to simulate continuous human-like gaze sequences.
+        We collected a high quality multi-subject gaze dataset, the Focus100, and developed an autoregressive graph transformer approach to simulate continuous human-like gaze sequences.
+        Our method generates SOTA gaze sequences, scanpaths, and saliency maps from a single model.
       </h2>
+      --->
+      <div class="notification is-light has-text-centered" style="max-width: 980px; margin: 0 auto;">
+  <h2 class="subtitle" style="margin-bottom: 0;">
+    <b>Left:</b> ground-truth gaze from six people. <b>Right:</b> six autoregressive simulations from our method.
+    We present an <b>autoregressive graph transformer</b> approach that simulates continuous, human-like gaze, and introduce <b>Focus100</b>, a multi-subject temporal gaze dataset.
+    Our framework produces state-of-the-art <span class="has-text-primary"><b>gaze trajectories</b></span>, <span class="has-text-success"><b>scanpaths</b></span>, and <span class="has-text-link"><b>saliency maps</b></span> from a <i>single model</i>.
+  </h2>
+</div>
     </div>
   </div>
 </section>
@@ -164,8 +172,9 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Accurately modelling human attention is essential for numerous computer vision applications, particularly in the domain of automotive safety. Traditional methods simplify or aggregate gaze data into scanpath or saliency map representations, neglecting several aspects of natural gaze dynamics and potentially introducing artefacts into training data. Addressing these shortcomings, we introduce a dynamical systems approach that conceptualises human gaze as an active agent within the environment, allowing the modelling and generation of raw, continuous gaze data. We propose a gaze-centric spatiotemporal graph representation of driving scenes, processed by a novel heterogeneous graph transformer module (the Affinity Relation Transformer; ART), enabling dynamic modelling of interactions between driver gaze and surrounding traffic objects. Additionally, we introduce an Object-based mixture Density Network (ODN) for predicting next-step gaze distributions, accounting for the stochastic and object-centric nature of attentional shifts in complex environments. To support our approach, we also collected and make available the Focus100 dataset, featuring gaze from 30 engaged subjects viewing ego-centric driving footage. Our unified simulation-based approach demonstrates significant improvements in producing raw gaze sequences, spatial attention heatmaps, and naturalistic scanpath dynamics compared to state-of-the-art ego-centric gaze estimation approaches; offering valuable insights for the temporal modelling of attention and automotive safety.        </div>
-    </div>
+Accurately modelling human attention is essential for numerous computer vision applications, particularly in the domain of automotive safety. 
+Existing methods typically collapse gaze into saliency maps or scanpaths, treating gaze dynamics only implicitly. We instead formulate gaze modelling as an autoregressive dynamical system and explicitly unroll raw gaze trajectories over time, conditioned on both gaze history and the evolving environment.
+Driving scenes are represented as gaze-centric graphs processed by the Affinity Relation Transformer (ART), a heterogeneous graph transformer that models interactions between driver gaze, traffic objects, and road structure. We further introduce the Object Density Network (ODN) to predict next-step gaze distributions, capturing the stochastic and object-centric nature of attentional shifts in complex environments. We also release Focus100, a new dataset of raw gaze data from 30 participants viewing egocentric driving footage. Trained directly on raw gaze, without fixation filtering, our unified approach produces more natural gaze trajectories, scanpath dynamics, and saliency maps than existing attention models, offering valuable insights for the temporal modelling of human attention in dynamic environments.     </div>
   </div>
 </section>
 <!-- End paper abstract -->
@@ -203,7 +212,7 @@
             </div>
             <div class="column is-one-third">
               <img src="static/images/art_graph.png" alt="Weight distance correlation" class="blend-img-background center-image" style="max-width: 85%; height: auto;" />
-              <em> Traffic scenes as heterogeneous graphs with nodes representing road structure, driving-relevant objects, and <strong>gaze</strong>. </em>
+              <em> Traffic scenes as heterogeneous graphs with nodes representing road structure, driving-relevant objects, and <strong>driver gaze</strong>. </em>
             </div>
           </div>
 
@@ -232,7 +241,7 @@
                         margin-bottom: 1rem;
                         margin-top: 2rem;" />
             <figcaption class="has-text-centered">
-              <em>The Focus100 dataset contains eye-tracking data from 30 subjects viewing 100 driving videos. The top row shows diversity in pedestrian traffic,
+              <em>Focus100 dataset examples. The top row shows diversity in pedestrian traffic,
                  hazardousness, and road type. 
                  The bottom row shows the same video frame overlaid with the gaze samples of three separate subjects over the previous 2s; demonstrating 
                  the diversity of temporal gaze patterns for the same stimulus. </em>
@@ -266,23 +275,33 @@
         <div class="content">
 
           <h2 class="title is-3 has-text-centered">
-            Temporal Dynamics
+            Gaze Dynamics
           </h2>
           
-
+            <figure>
             <img src="static/images/dynamics_example.png" 
                   alt="Weight distance correlation" 
                   class="blend-img-background center-image" 
                   style="display: block; margin: 0 auto; max-width: 100%; height: auto;
                         margin-bottom: 2rem;
                         margin-top: 2rem;" />
+            
+            <!--- <figcaption class="has-text-centered">
+              <em>Gaze sequences and saliency maps generated on a 15s clip of Focus100. 
+                The first column shows human gaze sequences, followed by those generated by ART, SCOUT, ViNet and GLC models. 
+                Each trace represents a single simulation, with the y-axis indicating time and x-axis showing left-to-right gaze position; average fixation duration (FD) per method is given. 
+                On the right, we display observed fixations for humans and model-generated saliency maps for the same video frames, 
+                temporally aligned with the gaze sequences for direct comparison. </em>
+            </figcaption> --->
+
+            </figure>
 
             <p>
-                We compared our simulations to ground truth (human) and state-of-the-art ego-centric gaze estimation methods on the Focus100 dataset. 
-                Above we see example gaze plots for each image dimension across a Focus100 video - each faint line is a subject/simulation and the fuller line is
-                the mean sequence (AtTrans is deterministic and therefore only has one).
-                Our method produces more human-like temporal gaze sequences than existing approaches; a result borne out across a range of 
-                sequence and gaze similarity metrics (below).
+                We compared our simulations to ground truth (human) and state-of-the-art driving and ego-centric gaze estimation methods on the Focus100 dataset. 
+                Above we see example gaze (left) and saliency maps (right) generated across a Focus100 video. Each column is a method, each line is a ground truth or simulated gaze sequence (x-axis for interpretability), and average fixation duration (FD) is given per method.
+                ART (ours) produces more human-like temporal gaze sequences than existing approaches. 
+                Saliency maps are also shown for each method, aligned temporally with the gaze sequences. ART saliency maps (aggregations across simulations) show better spatial alignment with human fixations than baselines designed specifically for saliency map generation.
+                Results are borne out across gaze similarity, fixation dynamics, and saliency metrics:
             </p>
 
 
@@ -310,7 +329,7 @@
         <div class="content">
 
           <h2 class="title is-3 has-text-centered">
-            Heatmaps
+            Saliency Maps
           </h2>
 
           <video poster="" id="tree" autoplay controls muted loop height="100%"
@@ -322,19 +341,12 @@
             type="video/mp4">
           </video>
 
-          <div class="columns">
-            <div class="column is-two-thirds">
-              <p>
-                Using our generated simulation we are able to create other gaze representations, such as scanpaths and heatmaps.
+          <p>
+                Using our generated simulations we are able to create other gaze representations, such as scanpaths and saliency.
                 Above you can see heatmaps produced by ART simulations over a Focus100 test-set sequence (unseen during model training).
                 The overlaid red circles are ground truth (human) gaze data.
-
-                The results table on the right shows our method surpassing SOA approaches - designed specifically for heatmap generation - on our dataset.
               </p>
-            </div>
-            <div class="column is-one-third">
-              <img src="static/images/heatmap_results.png" alt="Weight distance correlation" class="blend-img-background center-image" style="max-width: 92%; height: auto;" />            </div>
-          </div>
+            
 
         </div>
       </div>
@@ -344,17 +356,16 @@
 
 
 <!--BibTex citation -->
-  <section class="section" id="BibTeX">
-    <div class="container is-max-desktop content">
-      <h2 class="title">BibTeX</h2>
-      <pre><code>
-        @misc{beyond-scanpaths,
-          title={Beyond Scanpaths: Simulating Gaze with the Affinity Relation Transformer},
-          author={Luke Palmer, Petar Palasek, Hazem Abdelkawy},
-          year={2025}
-        }
-      </code></pre>
-    </div>
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{palmer_beyond_scanpaths_cvpr2026,
+  title     = {Beyond Scanpaths: Graph-Based Gaze Simulation in Dynamic Scenes},
+  author    = {Palmer, Luke and Palasek, Petar and Abdelkawy, Hazem},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year      = {2026}
+}</code></pre>
+  </div>
 </section>
 <!--End BibTex citation -->
 
